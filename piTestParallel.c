@@ -32,9 +32,7 @@ int main() {
         int base = NUMSTEPS / workers;
         int remainder = NUMSTEPS % workers;
 
-        
         int my_count = base + (my_rank <= remainder ? 1 : 0);
-
         
         int my_start;
         if (my_rank <= remainder)
@@ -43,7 +41,6 @@ int main() {
             my_start = remainder * (base + 1) + (my_rank - remainder - 1) * base;
 
         int my_end = my_start + my_count;
-
        
         for (i = my_start; i < my_end; i++) {
             double x = (i + 0.5) * step;
