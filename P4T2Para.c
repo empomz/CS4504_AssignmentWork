@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 #define N 2048
-#define FactorIntToDouble 1.1;
+#define FactorIntToDouble 1.1
 
 double firstMatrix [N] [N] = {0.0};
 double secondMatrix [N] [N] = {0.0};
@@ -13,7 +13,7 @@ double matrixMultiResult [N] [N] = {0.0};
 
 void matrixInit()
 {
-#pragma omp parallel for num_threads(4)
+//    #pragma omp parallel for num_threads(4)
     for(int row = 0 ; row < N ; row++ ) {
         for(int col = 0 ; col < N ;col++){
             srand(row+col);
@@ -107,12 +107,10 @@ void matrixMulti(int upperOfRow , int bottomOfRow ,
 
 
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     int thread_count = strtol(argv[1], NULL, 10);
 
-#pragma omp parallel num_threads(thread_count)
-    matrixInit();
+#pragma omp parallel num_threads(thread_count){
 
     double t1 = omp_get_wtime();
     matrixMulti(0, N-1, 0, N-1, 0, N-1);
