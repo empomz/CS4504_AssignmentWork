@@ -112,6 +112,7 @@ int main(int argc, char *argv[])
     int thread_count = strtol(argv[1], NULL, 10);
 
 #pragma omp parallel num_threads(thread_count)
+    matrixInit();
 
     double t1 = omp_get_wtime();
     matrixMulti(0, N-1, 0, N-1, 0, N-1);
