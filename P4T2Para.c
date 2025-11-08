@@ -13,7 +13,7 @@ double matrixMultiResult [N] [N] = {0.0};
 
 void matrixInit()
 {
-//    #pragma omp parallel for num_threads(4)
+#pragma omp parallel for num_threads(4)
     for(int row = 0 ; row < N ; row++ ) {
         for(int col = 0 ; col < N ;col++){
             srand(row+col);
